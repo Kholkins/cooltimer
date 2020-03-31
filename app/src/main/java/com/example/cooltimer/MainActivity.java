@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -79,5 +80,19 @@ public class MainActivity extends AppCompatActivity {
         };
         handler.post(runnable);*/
 
+    }
+
+    public void start(View view) {
+        new CountDownTimer(seekBar.getProgress()*1000, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        }.start();
     }
 }
