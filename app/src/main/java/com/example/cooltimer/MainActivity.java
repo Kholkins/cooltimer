@@ -3,6 +3,8 @@ package com.example.cooltimer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -11,7 +13,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+       /* final Handler handler = new Handler();
 
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                Log.d("runnable", "Two seconds are passed");
+                handler.postDelayed(this,2000);
+            }
+        };
+        handler.post(runnable);*/
 
     }
 }
