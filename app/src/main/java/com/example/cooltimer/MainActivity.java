@@ -17,14 +17,15 @@ public class MainActivity extends AppCompatActivity {
         CountDownTimer downTimer = new CountDownTimer(10000,1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-
+                Log.d("timer", String.valueOf(millisUntilFinished/1000)+"seconds left.");
             }
 
             @Override
             public void onFinish() {
-
+                Log.d("timer", "finish");
             }
-        }
+        };
+        downTimer.start();
 
        /* final Handler handler = new Handler();
 
