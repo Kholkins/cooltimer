@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                     strSeconds = "0"+seconds;
                 }else strSeconds = String.valueOf(seconds);
 
+                textView.setText(strMinutes+":"+strSeconds);
             }
 
             @Override
