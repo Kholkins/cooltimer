@@ -86,8 +86,8 @@ public class MainActivity extends AppCompatActivity {
         new CountDownTimer(seekBar.getProgress()*1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                int minutes = (int) (millisUntilFinished/60);
-                int seconds = (int) (millisUntilFinished - (minutes*60));
+                int minutes = (int) (millisUntilFinished/1000/60);
+                int seconds = (int) (millisUntilFinished/1000 - (minutes*60));
 
                 String strMinutes = "";
                 String strSeconds = "";
