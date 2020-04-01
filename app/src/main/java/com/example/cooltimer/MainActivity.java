@@ -82,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
             button.setText("Stop");
             seekBar.setEnabled(false);
             isTimerOn = true;
+        }else {
+            countDownTimer.cancel();
+            textView.setText("60:00");
+            button.setText("Start");
+            seekBar.setEnabled(true);
+            isTimerOn = false;
         }
 
         countDownTimer = new CountDownTimer(seekBar.getProgress()*1000, 1000) {
