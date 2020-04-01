@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
 
     private SeekBar seekBar;
     private TextView textView;
+    private boolean isTimerOn;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
         seekBar = findViewById(R.id.seekBar);
         textView = findViewById(R.id.textView);
+        button = findViewById(R.id.button);
 
         seekBar.setMax(600);
         seekBar.setProgress(60);
+        isTimerOn = false;
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -71,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void start(View view) {
+
+        if (isTimerOn){
+            button.setText("Stop");
+            seekBar.setEnabled(false);
+        }
+
         new CountDownTimer(seekBar.getProgress()*1000, 1000) {
             @Override
                 public void onTick(long millisUntilFinished) {
@@ -80,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onFinish() {
                 MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
+                mediaPlayer.start();
             }
         }.start();
     }
