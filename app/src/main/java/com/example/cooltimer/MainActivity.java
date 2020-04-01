@@ -92,16 +92,12 @@ public class MainActivity extends AppCompatActivity {
                 public void onFinish() {
                     MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
                     mediaPlayer.start();
+                    resetTimer();
                 }
             }.start();
 
         }else {
-            countDownTimer.cancel();
-            textView.setText("30:00");
-            button.setText("Start");
-            seekBar.setEnabled(true);
-            seekBar.setProgress(30);
-            isTimerOn = false;
+            resetTimer();
         }
     }
 
@@ -121,5 +117,14 @@ public class MainActivity extends AppCompatActivity {
         }else strSeconds = String.valueOf(seconds);
 
         textView.setText(strMinutes+":"+strSeconds);
+    }
+
+    private void resetTimer(){
+        countDownTimer.cancel();
+        textView.setText("00:30");
+        button.setText("Start");
+        seekBar.setEnabled(true);
+        seekBar.setProgress(30);
+        isTimerOn = false;
     }
 }
