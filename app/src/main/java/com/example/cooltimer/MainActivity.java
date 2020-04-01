@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
 
         seekBar.setMax(600);
-        seekBar.setProgress(60);
+        seekBar.setProgress(30);
         isTimerOn = false;
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -82,26 +82,27 @@ public class MainActivity extends AppCompatActivity {
             button.setText("Stop");
             seekBar.setEnabled(false);
             isTimerOn = true;
+            countDownTimer = new CountDownTimer(seekBar.getProgress()*1000, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    updateTimer(millisUntilFinished);
+                }
+
+                @Override
+                public void onFinish() {
+                    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
+                    mediaPlayer.start();
+                }
+            }.start();
+
         }else {
             countDownTimer.cancel();
-            textView.setText("60:00");
+            textView.setText("30:00");
             button.setText("Start");
             seekBar.setEnabled(true);
+            seekBar.setProgress(30);
             isTimerOn = false;
         }
-
-        countDownTimer = new CountDownTimer(seekBar.getProgress()*1000, 1000) {
-            @Override
-                public void onTick(long millisUntilFinished) {
-                updateTimer(millisUntilFinished);
-            }
-
-            @Override
-            public void onFinish() {
-                MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
-                mediaPlayer.start();
-            }
-        }.start();
     }
 
     private void updateTimer (long millisUntilFinished) {
