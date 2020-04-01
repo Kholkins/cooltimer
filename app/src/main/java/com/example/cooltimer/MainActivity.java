@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textView;
     private boolean isTimerOn;
     private Button button;
+    private CountDownTimer countDownTimer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
             isTimerOn = true;
         }
 
-        new CountDownTimer(seekBar.getProgress()*1000, 1000) {
+        countDownTimer = new CountDownTimer(seekBar.getProgress()*1000, 1000) {
             @Override
                 public void onTick(long millisUntilFinished) {
                 updateTimer(millisUntilFinished);
