@@ -2,6 +2,7 @@ package com.example.cooltimer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -72,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
     public void start(View view) {
         new CountDownTimer(seekBar.getProgress()*1000, 1000) {
             @Override
-            public void onTick(long millisUntilFinished) {
+                public void onTick(long millisUntilFinished) {
                 updateTimer(millisUntilFinished);
             }
 
             @Override
             public void onFinish() {
-
+                MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
             }
         }.start();
     }
