@@ -77,9 +77,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void start(View view) {
 
-        if (isTimerOn){
+        if (!isTimerOn){
             button.setText("Stop");
             seekBar.setEnabled(false);
+            isTimerOn = true;
         }
 
         new CountDownTimer(seekBar.getProgress()*1000, 1000) {
