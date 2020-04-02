@@ -25,6 +25,10 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     private void setPreferenceLabel (Preference preference, String value) {
       if (preference instanceof ListPreference) {
           ListPreference listPreference = (ListPreference)preference;
+          int index = listPreference.findIndexOfValue(value);
+          if (index >= 0) {
+              listPreference.setSummary(listPreference.getEntries()[index]);
+          }
       }
     }
 }
