@@ -14,8 +14,8 @@
         app:title="Timer melody"
         android:key="timer_melody"
         app:defaultValue="bell"
-        android:entries=""
-        android:entryValues=""
+        android:entries="@array/pef_timer_melody_label"
+        android:entryValues="@array/pef_timer_melody_value"
         />
 
 </PreferenceScreen>
