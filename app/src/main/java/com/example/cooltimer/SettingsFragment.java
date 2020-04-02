@@ -3,6 +3,7 @@ package com.example.cooltimer;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.PreferenceScreen;
@@ -22,6 +23,8 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         }
     }
     private void setPreferenceLabel (Preference preference, String value) {
-
+      if (preference instanceof ListPreference) {
+          ListPreference listPreference = (ListPreference)preference;
+      }
     }
 }
