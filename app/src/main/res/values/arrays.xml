@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    
+    <array name="pef_timer_melody_label">
+
+        <item>Bell</item>
+        <item>Alarm siren</item>
+        <item>Beep</item>
+
+    </array>
+    
+</resources>
