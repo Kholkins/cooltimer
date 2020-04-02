@@ -99,8 +99,21 @@ public class MainActivity extends AppCompatActivity {
                 public void onFinish() {
                     SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                     if (sharedPreferences.getBoolean("enable_sound", true)) {
-                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
-                        mediaPlayer.start();
+
+                        String melodyName = sharedPreferences.getString("timer_melody", "bell");
+                        if (melodyName.equals("bell")){
+                            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
+                            mediaPlayer.start();
+                        }
+                        if (melodyName.equals("alarm_siren")){
+                            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.siren);
+                            mediaPlayer.start();
+                        }
+                        if (melodyName.equals("beep")){
+                            MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.original);
+                            mediaPlayer.start();
+                        }
+
                     }
                     resetTimer();
                 }
