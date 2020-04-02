@@ -3,6 +3,7 @@ package com.example.cooltimer;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.preference.CheckBoxPreference;
 import androidx.preference.ListPreference;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
@@ -20,6 +21,11 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         for (int i = 0; i < count; i++) {
             Preference preference = preferenceScreen.getPreference(i);
+
+            if (!(preference instanceof CheckBoxPreference)){
+                String value = sharedPreferences.getString(preference.getKey(),"Bell");
+                setPreferenceLabel(preference,value);
+            }
         }
     }
     private void setPreferenceLabel (Preference preference, String value) {
