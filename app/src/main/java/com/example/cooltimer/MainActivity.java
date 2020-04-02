@@ -2,8 +2,10 @@ package com.example.cooltimer;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -95,8 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void onFinish() {
-                    MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
-                    mediaPlayer.start();
+                    SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    if (sharedPreferences.getBoolean("enable_sound", true)) {
+                        MediaPlayer mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.bell);
+                        mediaPlayer.start();
+                    }
                     resetTimer();
                 }
             }.start();
