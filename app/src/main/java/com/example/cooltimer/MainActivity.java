@@ -19,13 +19,14 @@ import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SharedPreferences.OnSharedPreferenceChangeListener {
 
     private SeekBar seekBar;
     private TextView textView;
     private boolean isTimerOn;
     private Button button;
     private CountDownTimer countDownTimer;
+    private int defaultInterval;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         button = findViewById(R.id.button);
 
         seekBar.setMax(600);
-        seekBar.setProgress(30);
+        setIntervalFromSharedPreference(PreferenceManager.getDefaultSharedPreferences(this));
         isTimerOn = false;
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -144,10 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void resetTimer(){
         countDownTimer.cancel();
-        textView.setText("00:30");
+        setIntervalFromSharedPreference(PreferenceManager.getDefaultSharedPreferences(this));
         button.setText("Start");
         seekBar.setEnabled(true);
-        seekBar.setProgress(30);
         isTimerOn = false;
     }
 
@@ -176,5 +176,15 @@ public class MainActivity extends AppCompatActivity {
 
     public void setIntervalFromSharedPreference(SharedPreferences sharedPreferences){
 
+        defaultInterval = Integer.valueOf(sharedPreferences.getString("default_timer","30"));
+        textView.setText("00:"+defaultInterval);
+        seekBar.setProgress(defaultInterval);
+    }
+
+    @Override
+    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+        if(key.equals("default_timer")){
+
+        }
     }
 }
