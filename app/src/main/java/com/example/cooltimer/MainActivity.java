@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     private Button button;
     private CountDownTimer countDownTimer;
     private int defaultInterval;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +37,11 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
         seekBar = findViewById(R.id.seekBar);
         textView = findViewById(R.id.textView);
         button = findViewById(R.id.button);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        sharedPreferences.registerOnSharedPreferenceChangeListener(this);
 
         seekBar.setMax(600);
-        setIntervalFromSharedPreference(PreferenceManager.getDefaultSharedPreferences(this));
+        setIntervalFromSharedPreference(sharedPreferences);
         isTimerOn = false;
 
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -145,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     private void resetTimer(){
         countDownTimer.cancel();
-        setIntervalFromSharedPreference(PreferenceManager.getDefaultSharedPreferences(this));
+        setIntervalFromSharedPreference(sharedPreferences);
         button.setText("Start");
         seekBar.setEnabled(true);
         isTimerOn = false;
@@ -184,7 +187,13 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         if(key.equals("default_timer")){
-
+            setIntervalFromSharedPreference(sharedPreferences);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        sharedPreferences.unregisterOnSharedPreferenceChangeListener(this);
     }
 }
