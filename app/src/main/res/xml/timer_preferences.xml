@@ -5,17 +5,23 @@
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="enable_sound"
-        app:title="Enable sound"
+        android:title="Enable sound"
         android:summaryOff="Sound disable"
         android:summaryOn="Sound enable"
         />
 
     <ListPreference
-        app:title="Timer melody"
+        android:title="Timer melody"
         android:key="timer_melody"
-        app:defaultValue="bell"
+        android:defaultValue="bell"
         android:entries="@array/pef_timer_melody_label"
         android:entryValues="@array/pef_timer_melody_value"
+        />
+
+    <EditTextPreference
+        android:title="Default timer"
+        android:key="default_timer"
+        android:defaultValue="30"
         />
 
 </PreferenceScreen>

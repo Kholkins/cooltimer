@@ -171,8 +171,10 @@ public class MainActivity extends AppCompatActivity {
             startActivity(openAbout);
             return true;
         }
-
-
         return super.onOptionsItemSelected(item);
+    }
+
+    public void setIntervalFromSharedPreference(SharedPreferences sharedPreferences){
+
     }
 }
