@@ -2,6 +2,7 @@ package com.example.cooltimer;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.preference.CheckBoxPreference;
 import androidx.preference.EditTextPreference;
@@ -67,6 +68,18 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
 
     @Override
     public boolean onPreferenceChange(Preference preference, Object newValue) {
-        return false;
+        Toast toast = Toast.makeText(getContext(),"Please enter an integer number", Toast.LENGTH_LONG);
+
+        if(preference.getKey().equals("default_timer")){
+            String defaultIntervalString = (String)newValue;
+
+            try {
+                int defaultInterval = Integer.parseInt(defaultIntervalString);
+            }catch (NumberFormatException nfi){
+                 toast.show();
+                 return false;
+            }
+        }
+        return true;
     }
 }

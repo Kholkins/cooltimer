@@ -179,12 +179,8 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
     }
 
     public void setIntervalFromSharedPreference(SharedPreferences sharedPreferences){
-        try {
-            defaultInterval = Integer.valueOf(sharedPreferences.getString("default_timer","30"));
-        }catch (Exception e){
-            Toast.makeText(this, "Somr error happens", Toast.LENGTH_SHORT).show();
-        }
 
+        defaultInterval = Integer.valueOf(sharedPreferences.getString("default_timer","30"));
         long defaultIntervalMS = defaultInterval*1000;
         updateTimer(defaultIntervalMS);
         seekBar.setProgress(defaultInterval);
